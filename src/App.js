@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter,useRoutes} from "react-router-dom";
+import Home from './pages/Home';
+import Knownledges from './pages/Knownledges';
+import Contact from './pages/Contact';
+import Portfolio from './pages/Portfolio';
+import NotFound from './pages/NotFound';
 
-function App() {
+const App = () => {
+ 
+  const MyRoutes = () => {
+    let routes = useRoutes([
+      { path: "/", element: <Home /> },
+      { path: "/competences", element: <Knownledges /> },
+      { path: "/contact", element: <Contact /> },
+      { path: "/portfolio", element: <Portfolio /> },
+      { path: "/*", element: <NotFound /> },
+
+    ]);
+    return routes;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+            <MyRoutes/>
+      </BrowserRouter>       
   );
-}
+};
 
 export default App;
